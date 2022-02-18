@@ -1,0 +1,37 @@
+.todoform input {
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #FFF;
+    width: 165px;
+  }
+  .todoform button {
+    padding: 10px;
+    font-size: 16px;
+    margin: 10px;
+    margin-right: 0px;
+    background-color: #1dd8a9;
+    color: #FFF;
+    border: 2px solid #1dd8a9;
+  }
+  .todoform button:hover {
+    background-color: #09866b;
+    border: 2px solid #09866b;
+    cursor: pointer;
+  }
+
+.theList {
+    list-style: none;
+    text-align-last:left;
+    width: 250px;
+    color: #333;
+    background-color: rgba(255,255,255,.5);
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+  
+  } 
+  .rightAlign{
+    align-content: 'right';
+  }
+
+  
