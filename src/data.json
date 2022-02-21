@@ -1,20 +1,23 @@
 [{
     "id": 1,
     "task": "Give dog a bath",
-    "complete": true
+    "complete": true,
+    "dueDate": "2019-01-01"
   }, {
     "id": 2,
     "task": "Do laundry",
-    "complete": true
+    "complete": true,
+    "dueDate": "2028-01-02"
   }, {
     "id": 3,
     "task": "Vacuum floor",
-    "complete": false
+    "complete": false,
+    "dueDate": "2009-01-03"
   }, {
     "id": 4,
     "task": "Feed cat",
     "complete": true,
-    "dueDate": "2019-01-01"
+    "dueDate": "1998-01-04"
   }, {
     "id": 5,
     "task": "Change light bulbs",
@@ -38,7 +41,8 @@
   }, {
     "id": 10,
     "task": "Bake Cookies",
-    "complete": false
+    "complete": false,
+    "dueDate": "1978-01-04"
   }, {
     "id": 11,
     "task": "Take nap",
@@ -46,7 +50,8 @@
   }, {
     "id": 12,
     "task": "Read book",
-    "complete": true
+    "complete": true,
+    "dueDate": "2024-01-04"
   }, {
     "id": 13,
     "task": "Exercise",

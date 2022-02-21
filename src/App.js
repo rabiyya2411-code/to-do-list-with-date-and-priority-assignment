@@ -12,12 +12,36 @@ function App() {
   const [toDoList, setToDoList] = useState(data);
   const [presentId, setpresentId] = useState('-1');
   const [userInput, setUserInput] = useState('');
-
   const [userDate, setUserDate] = useState(new Date());
   const [userPriority, setUserPriority] = useState('');
-
+  var [sorted, setSortedList] = useState(data);
+  //for logging each item of the list in console
   const myFunction = (item) => {
     console.log(item);
+  }
+  const handleSort = () => {
+    let filtered = toDoList.filter(task => {
+      return task.dueDate;
+    });
+    console.log('Filtered')
+    filtered.forEach(myFunction);
+
+    let sortedFiltered = filtered.sort((a,b) => (a.dueDate > b.dueDate)? 1:-1);
+    console.log('Sorted Filtered')
+    sortedFiltered.forEach(myFunction);
+    
+    let unfiltered = toDoList.filter(task => {
+      return !task.dueDate;
+    });
+    console.log('Filtered Out')
+    unfiltered.forEach(myFunction);
+    sorted = sortedFiltered.concat(unfiltered);
+    // let toSort = filtered;
+    setSortedList(sorted);
+    setToDoList(sorted);
+    console.log('After Sort')
+    sorted.forEach(myFunction);
+    //return sorted;
   }
 
   const handleToggle = (id) => {
@@ -34,21 +58,13 @@ function App() {
   }
 
   const saveTask = (userInput, dueDate, priority, id = -1) => {
-    // console.log(dueDate);
-    // return;
-    // console.log("To Do List: ");
     toDoList.forEach(myFunction);
     let copy = [...toDoList];
-    //console log for copy
-    //  console.log("Copy list: " );
-    copy.forEach(myFunction);
-
+    // copy.forEach(myFunction);
     let [currentTask] = toDoList.filter(task => task.id === Number(id));
     let currentId = id == -1 ? toDoList.length + 1 : id;
-    // console.log("CURRENT ID:" + currentId);
 
     if (id == -1) {
-      // console.log("ADD TASK ID: "+ currentId);
       //add new task
       copy = [...copy, {
         id: toDoList.length + 1,
@@ -59,12 +75,10 @@ function App() {
       }];
     }
 
-    else if (id == currentTask.id && !currentTask.complete) {
+    else if (id == currentTask.id && !currentTask.complete) { //edit task
       let ind = toDoList.findIndex((task) => {
         return task.id && task.id === presentId;
       });
-      // console.log("Index of edit task: " + ind);
-
       let task = {
         id: presentId,
         task: userInput,
@@ -72,20 +86,11 @@ function App() {
         dueDate: (moment(userDate).format("YYYY-MM-D")),
         priority: userPriority
       }
-
-      // console.log("Task Updated");
-      // console.log("Task Updated id: " + task.id);
-      // console.log("Task Updated task:" + task.task);
-      // console.log("Task Updated complete:" + task.complete);
-      // console.log("Task Updated dueDate:" + task.dueDate);
-      // console.log("Task Updated priority:" + task.priority);
-
-      copy.splice(ind, 1, task);
+     copy.splice(ind, 1, task);
     }
     setToDoList(copy);
-    let updated = toDoList;
-    // console.log("EDITED COPY") 
-    updated.forEach(myFunction);
+    // let updated = toDoList;
+    // updated.forEach(myFunction);
   }
 
   const editTask = (id) => {
@@ -108,10 +113,15 @@ function App() {
         <Header />
         <ToDoList
           toDoList={toDoList}
+          toSort = {sorted}
           handleToggle={handleToggle}
           handleFilter={handleFilter}
           editTask={editTask}
         />
+        
+        <button onClick={handleSort}>Sort by Due Date</button>
+        <br></br>
+        {/* <br></br> */}
         <ToDoForm
           saveTask={saveTask}
           presentId={presentId}

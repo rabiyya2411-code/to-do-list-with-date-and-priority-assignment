@@ -45,6 +45,7 @@ const ToDoForm = ({ saveTask, presentId, setpresentId, userInput, userDate,
         <div className="todoform">
             <form onSubmit={handleSubmit}>
                 <input value={presentId} type="hidden" onChange={handleIdChange} />
+                <br></br>
                 <input value={userInput} type="text" onChange={handleInputChange} placeholder="Enter task..." />
                 <br></br>
                 <br></br>
